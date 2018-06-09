@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+plt.style.use('ggplot')
 
 df=pd.read_csv("../datasets/train.csv")
 data_test=pd.read_csv("../datasets/test.csv")
@@ -14,8 +15,10 @@ df['Title']=[ i.split(",")[1].split('.')[0] for i in (df['Name'])]
 df['Title']=df['Title'].replace([' Col',' Rev', ' Dr', ' Mme', ' Lady', ' Sir', ' Jonkheer',  ' Major', ' the Countess', ' Dona', ' Don', ' Capt', ' Mlle'],"Rare")
 df['Title']=df['Title'].replace([' Ms'],' Miss')
 
-df.groupby('Title')[['Survived','Died']].agg('sum').plot(kind='bar')
+df.groupby('Title')[['Survived','Died']].agg('sum').plot(kind='bar',figsize=(15,8))
 plt.title("Distribution with respect to TITLE")
+plt.xlabel("Groups")
+plt.ylabel("Count")
 plt.show()
 
 df.Title = [ Titles[i] for i in (df.Title)]
