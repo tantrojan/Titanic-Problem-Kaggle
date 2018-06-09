@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn import preprocessing ,cross_validation,neighbors ,svm
+from sklearn.tree import DecisionTreeClassifier
 
 # Reading the training csv to pandas dataframe
 df = pd.read_csv("../datasets/train.csv");
@@ -24,11 +25,11 @@ X = np.array(df.drop(['Survived'],1))
 y = np.array(df['Survived'])
 
 # Separating training and testing datas
-X_train,X_test,y_train,y_test = cross_validation.train_test_split(X,y,test_size=0.2)
+X_train,X_test,y_train,y_test = cross_validation.train_test_split(X,y,test_size=0.4)
 
 # Setting Up Classifier
 # clf = neighbors.KNeighborsClassifier()
-clf =svm.SVC()
+clf =DecisionTreeClassifier()
 clf.fit(X_train,y_train)
 
 # Checking for accuracy

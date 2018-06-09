@@ -13,8 +13,16 @@ sum_list = np.array(df[["Parch","SibSp"]])
 c = [ sum(i) for i in sum_list ]
 df["Family"] = c
 
+
+
+# Extracting the TITLE from the Name
+df['Title']=[ i.split(",")[1].split('.')[0] for i in (df['Name'])]
+# Assigning a number to the title 
+Titles = dict([ (obj,i) for i,obj in enumerate(set(df.Title))])
+df.Title = [ Titles[i] for i in (df.Title)]
+
 # Keeping the required Items only
-df = df[["Pclass","Age","Family","Gender","Fare","Survived"]]
+df = df[["Pclass","Age","Family","Gender","Fare","Survived","Title"]]
 
 # Dropping the Rows consisting of NaN
 df.fillna(0,inplace=True)
@@ -28,7 +36,7 @@ X_train,X_test,y_train,y_test = cross_validation.train_test_split(X,y,test_size=
 
 # Setting Up Classifier
 # clf = neighbors.KNeighborsClassifier()
-clf =svm.SVC()
+clf =  neighbors.KNeighborsClassifier()
 clf.fit(X_train,y_train)
 
 # Checking for accuracy
@@ -47,8 +55,15 @@ sum_list = np.array(df2[["Parch","SibSp"]])
 c = [ sum(i) for i in sum_list ]
 df2["Family"] = c
 
+
+# Extracting the TITLE from the Name
+df2['Title']=[ i.split(",")[1].split('.')[0] for i in (df2['Name'])]
+# Assigning a number to the title 
+Titles = dict([ (obj,i) for i,obj in enumerate(set(df2.Title))])
+df2.Title = [ Titles[i] for i in (df2.Title)]
+
 # Keeping the required Items only
-df2 = df2[["Pclass","Age","Family","Gender","Fare"]]
+df2 = df2[["Pclass","Age","Family","Gender","Fare","Title"]]
 df2.fillna(0,inplace=True)
 print(np.array(df2))
 
