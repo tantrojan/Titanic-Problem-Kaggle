@@ -7,7 +7,7 @@ data_test=pd.read_csv("./datasets/test.csv")
 
 
 data_train["Died"]=1-data_train["Survived"]
-print(data_train.groupby('Pclass').agg('sum')[['Survived','Died']].plot(kind='bar',colors=['red','blue'],figsize=(25,7)))
+print(data_train.groupby('Pclass').agg('sum')[['Survived','Died']].plot(kind='bar'))
 
 # plt.title("Distribution based on CLASS")
 # plt.show()
