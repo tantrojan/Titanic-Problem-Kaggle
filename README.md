@@ -97,4 +97,18 @@ df.loc[(df['Fare']>40) & (df['Fare']<=513),"Fare"]=4
 Embarks={'S':0 ,'C':1 ,'Q':2 ,'0':0}
 df['Embarked']=[ Embarks[str(i)] for i in df['Embarked'] ]
 ```
- 
+## Classification
+Feeding the Featureset into a classification model to train the Classifier
+```sh
+from sklearn import < Classifier Class >
+...
+clf = < Classifier Class >.< Classifier Name >(< Parameters >)
+clf.fit(< Features >,< Label >)
+Prediction = clf.predict(< Test Features >)
+```
+#### Types of Classifier used :-
+- Logistic Regression
+- K Nearest Neighbors
+- Support Vector Classifier
+- Decision Tree
+- Random Forest
