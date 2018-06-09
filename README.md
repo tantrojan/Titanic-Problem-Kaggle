@@ -71,7 +71,30 @@ Grouping the passengers in each **Category** and visualizing the count of Passen
 ## Data Processing 
 The dataset provided needs to be cleaned and normalized in order to feed them into the classifier.
   - **Age** is mapped into **Age-Groups**
+  ```sh
+df["age_groups"]=pd.cut(df["Age"],5)
+df.loc[ df['Age'] <= 16, 'Age'] = 0
+df.loc[(df['Age'] > 16) & (df['Age'] <= 32), 'Age'] = 1
+df.loc[(df['Age'] > 32) & (df['Age'] <= 48), 'Age'] = 2
+df.loc[(df['Age'] > 48) & (df['Age'] <= 64), 'Age'] = 3
+df.loc[ df['Age'] > 64, 'Age'] = 4
+  ```
   - **Gender** is mapped as { 'male' : 1 , 'female' : 0 }
+  ```sh
+df['Gender']=list(map(lambda x: int(x=='male'),np.array(df['Sex'])))
+  ```
   - **Fare** is mapped into **Fare-Groups**
+```sh
+df["fare_groups"]=pd.qcut(df["Fare"],5)
+df.loc[df['Fare']<= 8,"Fare"]=0
+df.loc[(df['Fare']>8) & (df['Fare']<=11),"Fare"]=1
+df.loc[(df['Fare']>11) & (df['Fare']<=22),"Fare"]=2
+df.loc[(df['Fare']>22) & (df['Fare']<=40),"Fare"]=3
+df.loc[(df['Fare']>40) & (df['Fare']<=513),"Fare"]=4
+```
   - **Embarkment** is mapped as { 'S' : 0 , 'Q' : 1 , 'C' : 2 }
+```sh
+Embarks={'S':0 ,'C':1 ,'Q':2 ,'0':0}
+df['Embarked']=[ Embarks[str(i)] for i in df['Embarked'] ]
+```
  
