@@ -68,7 +68,7 @@ Grouping the passengers in each **Category** and visualizing the count of Passen
   - (1,2,3,4,5,6,7,8,9,10,11)
 <img src="./Visualize/Images2/family.png" />
 
-## Data Processing 
+## Data Pre-processing 
 The dataset provided needs to be cleaned and normalized in order to feed them into the classifier.
   - **Age** is mapped into **Age-Groups**
   ```sh
